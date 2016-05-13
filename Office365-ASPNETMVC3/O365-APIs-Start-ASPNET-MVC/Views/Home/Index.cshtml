@@ -1,0 +1,119 @@
+﻿<!--
+Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license at the bottom of this file.
+-->
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (ViewBag.DidNotAddConnectedServices == true)
+{
+    <h1>Oops you've reached an error!</h1>
+    <br />
+    <br />
+    <h5>Looks like you may not have added the connected service to your project. Follow the 
+    instructions in the readme to register and configure the sample to consume Office 365 services. The 
+    readme file is in the solution (README.MD), and you can also view it 
+    online at <strong><a href="http://aka.ms/o365-apis-start-aspnet">Office 365 Starter Project Readme. </a></strong></h5>
+    <br />
+    <br />
+}
+
+@if (ViewBag.TenantIDIsNull == true)
+{
+    <h1>Oops you've reached an error!</h1>
+    <br />
+    <br />
+    <h5>
+        Looks like you may not have entered the value of your tenant ID in the web.config file in your project. Follow the
+        instructions in the readme to get this value from the Azure portal and copy it into the web.config file. The
+        readme file is in the solution (README.MD), and you can also view it
+        online at <strong><a href="http://aka.ms/o365-apis-start-aspnet">Office 365 Starter Project Readme. </a></strong>
+    </h5>
+    <br />
+    <br />
+}
+
+@if((ViewBag.DidNotAddConnectedServices == false) && (ViewBag.TenantIDIsNull == false))
+{
+<div class="main">
+    <br />
+    <p>
+        This sample uses the <strong><a href="http://msdn.microsoft.com/en-us/office/office365/howto/platform-development-overview">Office 365 API</a></strong> client libraries to illustrate basic operations against the Calendar, Contacts, Mail, and Files (OneDrive for Business)
+        service endpoints in Office 365. It also demonstrates how to enable single sign-on and authenticate against multiple Office 365 services
+        in your app.
+    </p>
+    <br />
+    <p>To get started:</p>
+    <br />
+    <ol>
+        <li><p>Select Sign in from the upper right corner of this page to sign in to your Office 365 tenant.</p></li>
+        <li><p>Select the buttons below to see this app in action.</p></li>
+    </ol>
+            
+    <br />
+    <br />
+    <p>The readme file is in the solution (README.MD), and you can also view it online at <strong><a href="http://aka.ms/o365-apis-start-aspnet">Office 365 Starter Project Readme. </a></strong></p>
+
+    <p><strong>It is critical that all the Office 365 service permissions are configured properly in this sample as detailed in the sample readme. Failure to do so may cause authentication and functionality issues within this app.</strong></p>
+    <br />
+    <br />
+
+    <div class="mainButtons">
+        <button id="calendarButton" type="button" class="btn btn-lg btn-primary has-spinner"  data-spinner="right" onclick="location.href='@Url.Action("Index", "Calendar")'">Calendar</button>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <button id="contactsButton" type="button" class="btn btn-lg btn-primary has-spinner" data-spinner="right" onclick="location.href='@Url.Action("Index", "Contact")'">Contacts</button>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <button id="emailButton" type="button" class="btn btn-lg btn-primary has-spinner" data-spinner="right" onclick="location.href='@Url.Action("Index", "Mail")'">Email</button>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <button id="myFilesButton" type="button" class="btn btn-lg btn-primary has-spinner" data-spinner="right" onclick="location.href='@Url.Action("Index", "File")'">My Files</button>
+    </div>
+</div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var spinnerHTML = "<span class='spinner'><i class='fa fa-spinner fa-spin'></i></span>",
+            spinnerObjects = $(".has-spinner");
+
+
+        spinnerObjects.click(function () {
+            $(this).append("&nbsp;" + spinnerHTML)
+            $(this).toggleClass('active');
+        });
+    });
+
+</script>
+
+
+<!--
+*********************************************************
+
+O365 APIs Starter Project for ASPNET MVC, https://github.com/OfficeDev/Office-365-APIs-Starter-Project-for-ASPNETMVC
+
+Copyright (c) Microsoft Corporation
+All rights reserved.
+
+MIT License:
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+""Software""), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*********************************************************
+-->
